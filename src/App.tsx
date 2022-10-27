@@ -1,24 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container } from 'react-bootstrap';
+import { Route, Switch } from 'react-router-dom';
+import About from './components/About/About';
+import Home from './components/Home/Home';
+import Libraries from './components/Libraries/Libraries';
+import LibraryDetails from './components/Libraries/LibraryDetails';
+import Menu from './components/Menu';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Menu />
+      <Container className="my-5">
+        <main>
+          <Switch>
+            <Route path="/home">
+              <Home/>
+            </Route>
+            <Route path="/libraries/:id">
+              <LibraryDetails />
+            </Route>
+            <Route path="/libraries">
+              <Libraries/>
+            </Route>
+            <Route path="/about">
+              <About/>
+            </Route>
+          </Switch>
+        </main>
+      </Container>
     </div>
   );
 }
